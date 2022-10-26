@@ -1,0 +1,14 @@
+### Node ###
+node_modules/
+jspm_packages/
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+package-lock.json 
+
+build
+npm-debug.log
+.nyc
+.env
+.DS_Store
