@@ -2,7 +2,6 @@ let page;
 
 beforeEach(async () => {
   page = await browser.newPage();
-  await page.goto("https://github.com/team");
 });
 
 afterEach(() => {
@@ -10,6 +9,10 @@ afterEach(() => {
 });
 
 describe("Github page tests", () => {
+  beforeEach(async() => {
+    await page.goto("https://github.com/team");
+  });
+
   test("The h1 header content'", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
@@ -31,4 +34,24 @@ describe("Github page tests", () => {
     const actual = await page.$eval(btnSelector, link => link.textContent.trim());
     expect(actual).toContain("Get started with Team")
   }, 20000);
+});
+
+describe("Should check titles for GitHub pages", () => {
+  test("Check Pricing page", async() => {
+   await page.goto("https://github.com/pricing");
+   const title = await page.title();
+   expect(title).toContain("Pricing · Plans for every developer · GitHub")
+  }, 45000);
+
+  test("", async() => {
+    await page.goto("https://partner.github.com");
+    const title = await page.title();
+    expect(title).toContain("GitHub Partners | GitHub Partner Portal");
+  },35000);
+
+  test("", async() => {
+    await page.goto("https://github.blog");
+    const title = await page.title();
+    expect(title).toContain("The GitHub Blog | Updates, ideas, and inspiration from GitHub to help developers build and design software.");
+  },35000);
 });
